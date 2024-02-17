@@ -46,7 +46,7 @@ price alert application that triggers an email when the user’s target price is
 ## API Details:
 <!-- TOC -->
 
-## 1. Authentication Request:
+## 2. Authentication Request:
     Request Type: POST 
     URL : http://127.0.0.1:8000/signup
     Payload :{
@@ -64,7 +64,7 @@ price alert application that triggers an email when the user’s target price is
                     }
 
 
-## 1. Login Request:
+## 2. Login Request:
     Request Type: POST 
     URL : http://127.0.0.1:8000/login
     Payload :
@@ -86,7 +86,7 @@ price alert application that triggers an email when the user’s target price is
 
 
 
-## 1. Alert Add Request:
+## 3. Alert Add Request:
     Request Type: POST 
     URL : http://127.0.0.1:8000/alerts/create/
     Payload :
@@ -107,10 +107,9 @@ price alert application that triggers an email when the user’s target price is
                     "createdBy": 1
                   }
 
-## 1. Alert fetch all:
+## 4. Alert fetch all:
     Request Type: GET 
-    URL : http://127.0.0.1:8000/alerts/
-    
+    URL : http://127.0.0.1:8000/alerts/?page=0&elements=10
     Response Status : 200
     Respnse Body : [{
                     "id": 1,
@@ -120,12 +119,15 @@ price alert application that triggers an email when the user’s target price is
                     "status": "created",
                     "createdBy": 1
                   }]
+   <!-- TOC -->
+        page: Page Number.
+        elements:  No of Elements in Page.
+    <!-- TOC -->
                   
-## 1. Alert fetch all with pagination:
+## 5. Alert fetch all with pagination:
     Request Type: GET 
-    URL : http://127.0.0.1:8000/alerts/
-    
-    Response Status : 200
+    URL : http://127.0.0.1:8000/alerts/?page=0&elements=10&status=created
+    Response Status: 200
     Respnse Body : [{
                     "id": 1,
                     "coin_id": "bitcoin",
@@ -134,3 +136,74 @@ price alert application that triggers an email when the user’s target price is
                     "status": "created",
                     "createdBy": 1
                   }]
+    <!-- TOC -->
+        page: Page Number.
+        elements:  No of Elements in Page.
+        status: can send status from STATUS_CHOICE
+    <!-- TOC -->
+
+
+
+## 6. Alert Detail Request:
+    Request Type: GET 
+    URL : http://127.0.0.1:8000/alerts/1/
+    Response Status : 200
+    Respnse Body : {
+                    "id": 1,
+                    "coin_id": "bitcoin",
+                    "alert_name": "bitcoint_alert",
+                    "alert_price": "51621",
+                    "status": "created",
+                    "createdBy": 1
+                  }
+                  
+## 7. Alert Edit Request:
+    Request Type: PUT 
+    URL : http://127.0.0.1:8000/alerts/1/
+    Payload :
+               {
+                   "id": 1,
+                  "coin_id": "bitcoin",
+                  "alert_name": "bitcoint_alert",
+                  "alert_price": "51621",
+                  "status": "created"
+                }
+
+    Response Status : 200
+    Respnse Body : {
+                    "id": 1,
+                    "coin_id": "bitcoin",
+                    "alert_name": "bitcoint_alert",
+                    "alert_price": "51621",
+                    "status": "created",
+                    "createdBy": 1
+                  }
+
+
+## 7. Alert Delete Request:
+    Request Type: DELETE 
+    URL : http://127.0.0.1:8000/alerts/1/
+    Payload :
+    Response Status: 204 No content found
+
+<!-- TOC -->
+# Steps to run this Application
+
+## 1. Using docker compose
+    Need import project from GitHub https://github.com/gauravkri/crypto_price_alert.git
+    cd to project root
+    RUN command ```docker compose -f docker-compose.yml up -d```
+##2 Using project 
+    Prerequisites
+        * Mysql
+        * Redis
+        * python
+        
+    Need import project from GitHub https://github.com/gauravkri/crypto_price_alert.git
+    cd to project root
+    pip install -r requirements.txt
+    Change Redis URL in project/setting.py
+    Change mysql config in project/setting.py
+    sh start.sh
+<!-- TOC -->
+    
