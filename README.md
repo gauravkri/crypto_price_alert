@@ -88,6 +88,7 @@ price alert application that triggers an email when the user’s target price is
 
 ## 3. Alert Add Request:
     Request Type: POST 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/create/
     Payload :
                {
@@ -109,6 +110,7 @@ price alert application that triggers an email when the user’s target price is
 
 ## 4. Alert fetch all:
     Request Type: GET 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/?page=0&elements=10
     Response Status : 200
     Respnse Body : [{
@@ -126,6 +128,7 @@ price alert application that triggers an email when the user’s target price is
                   
 ## 5. Alert fetch all with pagination:
     Request Type: GET 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/?page=0&elements=10&status=created
     Response Status: 200
     Respnse Body : [{
@@ -146,6 +149,7 @@ price alert application that triggers an email when the user’s target price is
 
 ## 6. Alert Detail Request:
     Request Type: GET 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/1/
     Response Status : 200
     Respnse Body : {
@@ -159,6 +163,7 @@ price alert application that triggers an email when the user’s target price is
                   
 ## 7. Alert Edit Request:
     Request Type: PUT 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/1/
     Payload :
                {
@@ -182,6 +187,7 @@ price alert application that triggers an email when the user’s target price is
 
 ## 7. Alert Delete Request:
     Request Type: DELETE 
+    Authorization: Bearer <token>
     URL : http://127.0.0.1:8000/alerts/1/
     Payload :
     Response Status: 204 No content found
