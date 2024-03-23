@@ -1,0 +1,36 @@
+version: "3.0"
+
+volumes:
+  mysql_data:
+      driver: local
+
+services:
+  mysql:
+      platform: linux/x86_64
+      image: mysql:5.7
+      hostname: mysql
+      volumes:
+         - mysql_data:/var/lib/mysql
+      restart: unless-stopped
+      environment:
+         - MYSQL_ROOT_PASSWORD=Pa$$w0r!d123
+         - MYSQL_DATABASE=alertsystem
+         - MYSQL_USER=alert
+         - MYSQL_PASSWORD=password
+
+  redis:
+      image: redis:latest
+      restart: unless-stopped
+      command: redis-server
+      ports:
+        - "6379:6379"
+
+  pricealer:
+      # image: pricealertproject
+      image: gauravkrishna963/pricealertproject:1
+      restart: unless-stopped
+      environment:
+      - REDIS_URL=redis://172.17.0.1:6379/
+      - DB_HOST=mysql
+      ports: 
+      - "8000:8000"
